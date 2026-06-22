@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Stayed</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    width:100vw;
+    height:100vh;
+    background:#000;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Georgia, serif;
+    cursor:none;
+}
+
+.message{
+    position:absolute;
+    z-index:10;
+    text-align:center;
+}
+
+.highlight{
+    color:#ff0000;
+    font-size:clamp(2rem,5vw,5rem);
+    font-weight:bold;
+    text-shadow:
+        0 0 3px #ff0000,
+        0 0 6px #ff0000;
+    animation:flicker 2s infinite;
+}
+
+.signature{
+    position:fixed;
+    bottom:8px;
+    right:12px;
+    color:rgba(255,0,0,0.15);
+    font-size:9px;
+    letter-spacing:3px;
+    user-select:none;
+    z-index:20;
+}
+
+.glitch{
+    position:absolute;
+    opacity:0;
+    pointer-events:none;
+    white-space:nowrap;
+    color:#ff0000;
+    font-family:Arial, sans-serif;
+    text-shadow:
+        0 0 1px #ff0000,
+        0 0 2px #ff0000;
+    animation:flash 0.1s linear;
+}
+
+@keyframes flicker{
+    0%,100%{opacity:1;}
+    10%{opacity:.5;}
+    20%{opacity:1;}
+    21%{opacity:.3;}
+    22%{opacity:1;}
+    70%{opacity:1;}
+    71%{opacity:.4;}
+    72%{opacity:1;}
+}
+
+@keyframes flash{
+    0%{
+        opacity:1;
+        transform:translate(-2px,-1px);
+    }
+    50%{
+        opacity:.7;
+        transform:translate(2px,1px);
+    }
+    100%{
+        opacity:0;
+        transform:translate(-1px,2px);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="message">
+    <span class="highlight">Love stayed. You didn't.</span>
+</div>
+
+<div class="signature">zocaXD</div>
+
+<script>
+const phrases = [
+    "i miss you",
+    "come back",
+    "why?",
+    "please stay",
+    "i loved you",
+    "don't leave me",
+    "i'm alone",
+    "remember us",
+    "it hurts",
+    "forgive me",
+    "where are you?",
+    "i still wait",
+    "i hear your voice",
+    "please answer",
+    "love stayed",
+    "you didn't",
+    "can you hear me?",
+    "i'm still here",
+    "goodbye",
+    "i miss your smile"
+];
+
+function createGlitchText() {
+    const text = document.createElement("div");
+    text.className = "glitch";
+
+    text.innerText =
+        phrases[Math.floor(Math.random() * phrases.length)];
+
+    text.style.left =
+        Math.random() * window.innerWidth + "px";
+
+    text.style.top =
+        Math.random() * window.innerHeight + "px";
+
+    text.style.fontSize =
+        (Math.random() * 28 + 10) + "px";
+
+    document.body.appendChild(text);
+
+    setTimeout(() => {
+        text.remove();
+    }, 100);
+}
+
+setInterval(createGlitchText, 15);
+</script>
+
+</body>
+</html>
